@@ -1,0 +1,148 @@
+/* 🧾 Biller Form Container */
+.biller-container {
+  position: relative; /* Allows absolute elements like close button */
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fdfaf6;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 📋 Heading */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* 🧱 Vertical Form Layout */
+.biller-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+/* 🏷️ Label + Field Container */
+.biller-form div {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 🏷️ Labels */
+label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 6px;
+}
+
+/* ✏️ Inputs & Selects */
+input,
+select {
+  height: 44px;
+  width: 100%;
+  padding: 0 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  background-color: #fff;
+  box-sizing: border-box;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus,
+select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* ✅ Submit Button */
+button {
+  height: 44px;
+  background: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+button:disabled {
+  background: #9ec3f8;
+  cursor: not-allowed;
+}
+
+/* ⚠️ Error Message */
+.error-text {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+
+/* 📱 Responsive Design */
+@media (max-width: 600px) {
+  .biller-container {
+    padding: 15px;
+  }
+
+  .biller-form {
+    gap: 14px;
+  }
+
+  input,
+  select,
+  button {
+    font-size: 0.9rem;
+  }
+}
+
+/* 📦 Input with Icon */
+.input-with-icon {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  padding: 0 12px;
+  background-color: #fff;
+  height: 44px;
+}
+
+.input-with-icon i {
+  color: #555;
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.input-with-icon input {
+  border: none;
+  outline: none;
+  flex: 1;
+  height: 100%;
+  font-size: 15px;
+  background: transparent;
+  padding: 0;
+}
+
+/* ❌ Close Button */
+.close-btn1 {
+  color: red;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  line-height: 1;
+  position: absolute;
+  top: 16px;
+  right: 20px;
+}

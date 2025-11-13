@@ -1,0 +1,68 @@
+<!-- Top Header -->
+<header class="erp-header">
+  <div class="brand-block">
+    <span class="hamburger" (click)="toggleSidebar()">&#9776;</span>
+    <span class="system-name">ERP SUPERMARKET</span>
+  </div>
+</header>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <nav
+    class="sidebar"
+    [class.collapsed]="!isMobile && isCollapsed"
+    [class.mobile-open]="isMobile && isMobileSidebarOpen"
+  >
+    <h2>Admin Panel</h2>
+    <ul>
+      <li>
+        <a routerLink="admin-info" routerLinkActive="active">
+          <i class="fas fa-user-shield"></i> <span>Admin Information</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="add-employee" routerLinkActive="active">
+          <i class="fas fa-user-plus"></i> <span>Add Employee</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="add-supplier" routerLinkActive="active">
+          <i class="fas fa-truck"></i> <span>Add Supplier</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="add-inventory" routerLinkActive="active">
+          <i class="fas fa-box"></i> <span>Add Inventory</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="add-purchase" routerLinkActive="active">
+          <i class="fas fa-shopping-cart"></i> <span>Add Purchase</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ✅ Logout Button -->
+    <div class="logout">
+      <a (click)="logout()">
+        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Overlay for Mobile -->
+  <div
+    class="overlay"
+    *ngIf="isMobile && isMobileSidebarOpen"
+    (click)="closeMobileSidebar()"
+  ></div>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

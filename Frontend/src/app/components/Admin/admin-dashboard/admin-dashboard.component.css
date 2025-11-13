@@ -1,0 +1,329 @@
+ 
+/* =======================
+   HEADER BAR (Professional)
+======================= */
+.erp-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(90deg, #0a0a0a, #1c1c1c);
+  padding: 14px 24px;
+  color: #fff;
+  font-size: 22px;
+  font-weight: 600;
+  letter-spacing: 1px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.4);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  position: sticky;
+  top: 0;
+  z-index: 1100;
+}
+ 
+.brand-block {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+ 
+/* Hamburger Icon */
+.hamburger {
+  font-size: 26px;
+  cursor: pointer;
+  color: #ffcc00;
+  transition: all 0.3s ease;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+.hamburger:hover {
+  background: rgba(255, 204, 0, 0.15);
+  transform: scale(1.05);
+}
+ 
+/* System Name Text */
+.system-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #ffcc00;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  text-shadow: 0 0 8px rgba(255, 204, 0, 0.6);
+}
+ 
+/* Optional: Add subtle glow effect animation */
+@keyframes textGlow {
+  0%, 100% {
+    text-shadow: 0 0 6px rgba(255, 204, 0, 0.7);
+  }
+  50% {
+    text-shadow: 0 0 12px rgba(255, 204, 0, 1);
+  }
+}
+ 
+.system-name:hover {
+  animation: textGlow 1.5s infinite alternate;
+}
+ 
+/* Layout */
+.dashboard-layout {
+  display: flex;
+  min-height: calc(100vh - 60px); /* header ke niche */
+}
+ 
+/* Sidebar - Desktop Default */
+.sidebar {
+  width: 230px;
+  background: #1e1e1e; /* dark sidebar */
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px 10px;
+  transition: width 0.3s ease;
+  overflow: hidden;
+  z-index: 1000;
+}
+.sidebar.collapsed {
+  width: 60px; /* collapsed width */
+}
+ 
+/* Collapse hone par text hide karna */
+.sidebar.collapsed ul li a span {
+  display: none;
+}
+.sidebar.collapsed ul li a {
+  justify-content: center;
+  gap: 0;
+}
+.sidebar.collapsed .logout a span {
+  display: none;
+}
+.sidebar.collapsed .logout a {
+  justify-content: center;
+  gap: 0;
+}
+ 
+/* Links */
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.sidebar ul li {
+  margin-bottom: 12px;
+}
+.sidebar ul li a {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #fff;
+  padding: 10px 15px;
+  border-radius: 0; /* <-- corners flat */
+  text-decoration: none;
+  transition: all 0.3s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+ 
+.sidebar {
+  border-radius: 0 !important;
+}
+ 
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+  background: #333;
+}
+ 
+/* Logout */
+.logout {
+  margin-top: auto;
+}
+.logout a {
+  color: #ff4d4d;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all 0.3s ease;
+}
+ 
+/* Main Content */
+.dashboard-main {
+  flex: 1;
+  padding: 40px;
+  background: transparent;
+  transition: all 0.3s ease;
+}
+ 
+/* -------------------- MOBILE VIEW -------------------- */
+@media (max-width: 768px) {
+  .dashboard-layout {
+    position: relative;
+  }
+ 
+  /* Sidebar hidden by default */
+  .sidebar {
+    position: fixed;
+    top: 60px; /* header height */
+    left: -220px;
+    height: calc(100% - 60px);
+    width: 220px;
+    flex-direction: column;
+    transition: left 0.3s ease;
+  }
+ 
+  /* Sidebar open */
+  .sidebar.mobile-open {
+    left: 0;
+  }
+ 
+  /* Overlay for background */
+  .overlay {
+    position: fixed;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    height: calc(100% - 60px);
+    background: rgba(0, 0, 0, 0.6);
+    z-index: 999;
+  }
+ 
+  /* Content full width on mobile */
+  .dashboard-main {
+    padding: 20px;
+  }
+}
+ 
+/* Back button */
+.back-btn {
+  background: #ffcc00;
+  border: none;
+  color: #111;
+  font-weight: bold;
+  padding: 6px 14px;
+  border-radius: 6px;
+  margin-left: auto;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+.back-btn:hover {
+  background: #e6b800;
+}
+/* ===== Logout Active/Clicked Highlight ===== */
+.logout a.active {
+  background: #ffcc00 !important; /* Yellow background */
+  color: #000 !important;          /* Black text */
+}
+ 
+/* Hover effect bhi similar ho */
+.logout a:hover {
+  background: #ffcc00;
+  color: #000;
+}
+.logout-btn {
+  margin-top: auto;
+}
+/* Logout Section (bottom fixed style) */
+.logout {
+  margin-top: auto;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+ 
+.logout a,
+.logout button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: #ff4d4d;
+  font-weight: bold;
+  font-size: 15px;
+  padding: 10px 0;
+  border-radius: 6px;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+ 
+/* Hover and Active */
+.logout a:hover,
+.logout button:hover {
+  background-color: #ffcc00;
+  color: #000;
+}
+ 
+.logout a.active,
+.logout button.active {
+  background-color: #ffcc00;
+  color: #000;
+}
+ 
+/* Icon alignment (optional) */
+.logout i {
+  font-size: 18px;
+}
+/* Fix Sidebar Full Height Issue */
+.dashboard-layout {
+  display: flex;
+  min-height: 100vh; /* Full viewport height */
+}
+ 
+/* Sidebar stays full height always */
+.sidebar {
+  height: 100vh; /* force full height */
+  position: sticky;
+  top: 0;
+  align-self: flex-start;
+  overflow-y: auto; /* scroll within sidebar if content exceeds */
+}
+/* 💙 BLUE-GRADIENT THEME */
+body {
+  background: #f4f7fb;
+  color: #333;
+  font-family: 'Poppins', sans-serif;
+}
+ 
+/* Header */
+.erp-header {
+  background: linear-gradient(90deg, #1e3c72, #2a5298);
+  color: #fff;
+  padding: 12px 20px;
+  border-bottom: none;
+}
+ 
+/* Sidebar */
+.sidebar {
+  background: linear-gradient(180deg, #2a5298, #1e3c72);
+  color: #fff;
+  box-shadow: 2px 0 8px rgba(0, 0, 0, 0.2);
+}
+.sidebar h2 {
+  color: #fff;
+}
+.sidebar ul li a {
+  color: #e0e6f5;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+.sidebar ul li a.active,
+.sidebar ul li a:hover {
+  background: rgba(255, 255, 255, 0.2);
+  color: #fff;
+}
+ 
+/* Stat Cards */
+.stat-card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  color: #2a5298;
+}
+ 
+ 

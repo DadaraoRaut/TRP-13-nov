@@ -1,0 +1,42 @@
+<div class="order-list-container">
+  <h2>Purchase Orders</h2>
+ 
+  <div *ngIf="orders.length > 0" class="order-table-wrapper">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Supplier</th>
+          <th>Reference</th>
+          <th>Date</th>
+          <th>Items</th>
+          <th>Total Amount</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <td>{{ getSupplierName(order.supplierId) }}</td>
+          <td>{{ order.reference || '-' }}</td>
+          <td>{{ order.date | date:'short' }}</td>
+          <td>
+            <ul>
+              <li *ngFor="let item of order.items">
+                {{ item.product.name }} ({{ item.product.category }}) -
+                {{ item.purchaseQuantity }} {{ item.product.unit }} = {{ item.totalAmount }}
+              </li>
+            </ul>
+          </td>
+          <td>{{ getOrderTotal(order) }}</td>
+          <td>
+            <button class="pdf-btn" (click)="generatePDF(order)">PDF</button>
+            <button class="delete-btn" (click)="deleteOrder(order.id)">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+ 
+  <p *ngIf="orders.length === 0" class="no-orders">No purchase orders found.</p>
+</div>
+
+ <router-outlet></router-outlet>

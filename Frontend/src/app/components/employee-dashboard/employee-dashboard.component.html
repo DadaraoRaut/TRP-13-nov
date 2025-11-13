@@ -1,0 +1,66 @@
+<!-- Top Header -->
+<header class="erp-header">
+  <div class="brand-block">
+    <span class="hamburger" (click)="toggleSidebar()">&#9776;</span>
+    <span class="system-name">ERP SUPERMARKET</span>
+  </div>
+</header>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <nav
+    class="sidebar"
+    [class.collapsed]="!isMobile && isCollapsed"
+    [class.mobile-open]="isMobile && isMobileSidebarOpen"
+  >
+    <h2>Employee Panel</h2>
+    <ul>
+      <li>
+        <a routerLink="employee-information" routerLinkActive="active">
+          <i class="fas fa-user"></i> <span>Employee Information</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="attendance" routerLinkActive="active">
+          <i class="fas fa-clock"></i> <span>Attendance</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="holiday-calendar" routerLinkActive="active">
+          <i class="fas fa-calendar-alt"></i> <span>Holiday Calendar</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="salary" routerLinkActive="active">
+          <i class="fas fa-money-bill-wave"></i> <span>Salary</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="leaves" routerLinkActive="active">
+          <i class="fas fa-leaf"></i> <span>Leaves</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- ✅ Updated Logout -->
+    <div class="logout" (click)="logout()">
+      <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+    </div>
+  </nav>
+
+  <!-- Overlay for Mobile -->
+  <div
+    class="overlay"
+    *ngIf="isMobile && isMobileSidebarOpen"
+    (click)="closeMobileSidebar()"
+  ></div>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>

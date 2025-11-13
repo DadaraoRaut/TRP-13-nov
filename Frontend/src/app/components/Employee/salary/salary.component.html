@@ -1,0 +1,31 @@
+<div class="salary-container">
+  <!-- ❌ Close Button (Billing Style) -->
+  <button class="close-btn" (click)="goBack()">✖</button>
+
+  <h2>💰 Salary / Payslip</h2>
+
+  <!-- Salary Month -->
+  <div class="form-group">
+    <label>Salary Month</label>
+    <input type="month" [(ngModel)]="salaryMonth" />
+  </div>
+
+  <!-- Basic Salary -->
+  <div class="form-group">
+    <label>Basic Salary</label>
+    <input type="number" [(ngModel)]="basic" placeholder="Enter Basic Salary" />
+  </div>
+
+  <!-- Action Buttons -->
+  <div class="action-buttons">
+    <button (click)="requestSalarySlip()" [disabled]="loading || requested">
+      {{ loading ? 'Requesting...' : (requested ? 'Requested' : 'Request Salary Slip') }}
+    </button>
+
+    <button (click)="downloadPayslip()" [disabled]="!requested || downloading">
+      {{ downloading ? 'Downloading...' : 'Download Payslip' }}
+    </button>
+  </div>
+
+  <p class="message">{{ message }}</p>
+</div>

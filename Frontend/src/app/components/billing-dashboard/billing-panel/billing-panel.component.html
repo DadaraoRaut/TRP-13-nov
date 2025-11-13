@@ -1,0 +1,144 @@
+<div class="billing-container">
+  <button class="close-btn" (click)="closeBilling()">✖</button>
+
+  <h2>🧾 Create Bill</h2>
+
+  <!-- Bill Info -->
+  <div class="bill-info" *ngIf="billNumber">
+    <p>🧾 Bill No: {{ billNumber }}</p>
+    <p>📅 Date: {{ billDateTime | date: 'short' }}</p>
+  </div>
+
+  <!-- Product Selection -->
+  <div class="product-form">
+    <label>Product Name</label>
+    <select (change)="onProductSelect($event)" [disabled]="isEditing">
+      <option value="">-- Select Product --</option>
+      <option *ngFor="let p of products" [value]="p.id">
+  {{ p.name }}
+</option>
+    </select>
+    <!-- Display details when product is selected -->
+    <div *ngIf="selectedProduct">
+      <label>Category</label>
+      <input type="text" [value]="selectedProduct.category" disabled />
+
+      <label>Barcode</label>
+      <input type="text" [value]="selectedProduct.barcode" disabled />
+
+      <label>Available Quantity</label>
+      <input type="number" [value]="selectedProduct.availableQuantity" disabled />
+
+      <label>Price / {{ selectedProduct.unit }} (₹)</label>
+      <input type="number" [value]="selectedProduct.price" disabled />
+
+      <label>Purchase Quantity ({{ selectedProduct.unit }})</label>
+      <input type="number" [(ngModel)]="purchaseQty" min="1" step="1" (input)="autoCalculateTotal()" />
+
+      <label>GST (%)</label>
+      <select [(ngModel)]="taxPercent" (change)="autoCalculateTotal()">
+        <option *ngFor="let t of [0,1,2,3,4, 5,6,7,8,9,10,11, 12,13,14,15,16,17, 18]" [value]="t">{{ t }}%</option>
+      </select>
+
+      <label>Total (₹)</label>
+      <input type="number" [value]="calculatedTotal" disabled />
+
+      <div *ngIf="!isEditing">
+        <button (click)="addProductToBill()">➕ Add Product</button>
+      </div>
+      <div *ngIf="isEditing">
+        <button (click)="updateProduct()">✅ Update</button>
+        <button (click)="cancelEdit()">❌ Cancel</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Bill Summary -->
+  <h3>🧮 Bill Summary</h3>
+  <table *ngIf="billItems.length > 0">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Qty ({{ selectedProduct?.unit || 'unit' }})</th>
+        <th>Price</th>
+        <th>GST (%)</th>
+        <th>Total (₹)</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of billItems; let i = index">
+        <td>{{ item.name }}</td>
+        <td>{{ item.category }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>₹{{ item.price }}</td>
+        <td>{{ item.taxPercent }}%</td>
+        <td>₹{{ item.total + item.taxAmount | number: '1.2-2' }}</td>
+        <td>
+          <button (click)="editProduct(i)">✏️</button>
+          <button (click)="removeItem(i)">🗑️</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="total-section" *ngIf="billItems.length > 0">
+    <strong>Grand Total: ₹{{ totalAmount | number: '1.2-2' }}</strong>
+  </div>
+
+  <!-- Payment Section -->
+  <h4>💳 Payment Method</h4>
+
+  <div class="payment-method">
+    <label><input type="radio" value="cash" [(ngModel)]="paymentMethod" /> Cash</label>
+    <label><input type="radio" value="upi" [(ngModel)]="paymentMethod" /> UPI</label>
+    <label><input type="radio" value="card" [(ngModel)]="paymentMethod" /> Card</label>
+  </div>
+
+  <!-- UPI -->
+  <div class="payment-details" *ngIf="paymentMethod === 'upi'">
+    <label>UPI ID</label>
+    <input type="text" [(ngModel)]="upiId" placeholder="example@upi" />
+  </div>
+
+  <!-- Card -->
+  <div class="payment-details" *ngIf="paymentMethod === 'card'">
+    <label>Card Number</label>
+    <input type="text" [(ngModel)]="cardNumber" (input)="formatCardNumber($event)" maxlength="19" placeholder="1234 5678 9012 3456" />
+
+    <label>Expiry Date (MM / YY)</label>
+    <input type="text" [(ngModel)]="expiryDate" placeholder="MM / YY" maxlength="5" />
+
+    <label>CVV</label>
+    <input type="password" [(ngModel)]="cvv" maxlength="3" placeholder="CVV" />
+  </div>
+
+  <div class="payment-buttons">
+  <button class="pay-btn" (click)="processPayment()">💵 Pay</button>
+  <button class="invoice-btn" (click)="generateInvoice()">🧾 Generate Invoice</button>
+</div>
+
+  <!-- Inventory/Stock Overview -->
+  <h3>📦 Stock Overview</h3>
+  <table class="stock-table" *ngIf="products.length > 0">
+    <thead>
+      <tr>
+        <th>Product</th>
+        <th>Category</th>
+        <th>Available Qty ({{ products[0]?.unit || 'unit' }})</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of products">
+        <td>{{ p.name }}</td>
+        <td>{{ p.category }}</td>
+        <td>{{ p.availableQuantity }}</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div *ngIf="products.length === 0" class="no-stock">
+    <p>⚠️ No products available in inventory.</p>
+  </div>
+</div>

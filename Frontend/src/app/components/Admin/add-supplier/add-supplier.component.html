@@ -1,0 +1,71 @@
+<div class="supplier-container">
+     
+<!-- ✅ Close Button now navigates to Admin Information -->
+  <a class="close-btn1" (click)="goToAdminInfo()">✖</a>
+ 
+ 
+<h2>Add Supplier</h2>
+ 
+  <form [formGroup]="supplierForm" (ngSubmit)="onSubmit()">
+<!-- Supplier Name -->
+<label for="name">Supplier Name</label>
+<input
+      id="name"
+      formControlName="name"
+      type="text"
+      placeholder="Enter supplier name"
+    />
+ 
+    <!-- Email -->
+<label for="email">✉️ Email</label>
+<input
+      id="email"
+      formControlName="email"
+      type="email"
+      placeholder="Enter email address"
+    />
+ 
+    <!-- Mobile Number -->
+<label for="mobileNumber">📞 Mobile Number</label>
+<input
+      id="mobileNumber"
+      formControlName="mobileNumber"
+      type="text"
+      placeholder="Enter mobile number"
+    />
+ 
+    <!-- Address -->
+<label for="address">Address</label>
+<textarea
+      id="address"
+      formControlName="address"
+      placeholder="Enter supplier address"
+></textarea>
+ 
+    <!-- Supplier Type -->
+<label for="supplierType">Supplier Type</label>
+<input
+      id="supplierType"
+      formControlName="supplierType"
+      type="text"
+      placeholder="Enter supplier type (e.g., GROC)"
+    />
+ 
+    <!-- Role -->
+<label for="role">Role</label>
+<input
+      id="role"
+      formControlName="role"
+      type="text"
+      placeholder="Enter role (e.g., SUPPLIER)"
+    />
+ 
+    <!-- Submit -->
+<button type="submit" [disabled]="supplierForm.invalid || isSubmitting">
+      {{ isSubmitting ? 'Saving...' : 'Save Supplier' }}
+</button>
+</form>
+</div>
+ 
+ <router-outlet></router-outlet>
+ 

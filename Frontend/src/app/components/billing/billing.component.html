@@ -1,0 +1,58 @@
+<!-- Top Header -->
+<header class="erp-header">
+  <div class="brand-block">
+    <span class="hamburger" (click)="toggleSidebar()">&#9776;</span>
+    <span class="system-name">ERP SUPERMARKET</span>
+  </div>
+</header>
+
+<div class="dashboard-layout">
+  <!-- Sidebar -->
+  <nav
+    class="sidebar"
+    [class.collapsed]="!isMobile && isCollapsed"
+    [class.mobile-open]="isMobile && isMobileSidebarOpen"
+  >
+    <h2>Billing Panel</h2>
+    <ul>
+   <li>
+  <a routerLink="billing-information" routerLinkActive="active">
+    <i class="fas fa-info-circle"></i> <span>Billing Information</span>
+  </a>
+</li>
+
+    
+      <li>
+        <a routerLink="billing-panel" routerLinkActive="active">
+          <i class="fas fa-cash-register"></i> <span>Billing Panel</span>
+        </a>
+      </li>
+
+      <li>
+        <a routerLink="invoice" routerLinkActive="active">
+          <i class="fas fa-file-invoice"></i> <span>Invoice</span>
+        </a>
+      </li>
+    </ul>
+
+    <!-- Logout -->
+    <div class="logout">
+      <a routerLink="/login" routerLinkActive="active">
+        <i class="fas fa-sign-out-alt"></i> <span>Logout</span>
+      </a>
+    </div>
+  </nav>
+
+  <!-- Overlay for Mobile -->
+  <div
+    class="overlay"
+    *ngIf="isMobile && isMobileSidebarOpen"
+    (click)="closeMobileSidebar()"
+  ></div>
+
+  <!-- Main Content -->
+  <main class="dashboard-main">
+    <router-outlet></router-outlet>
+  </main>
+</div>
+ 

@@ -1,0 +1,129 @@
+<div class="po-container">
+ 
+  <!-- ✅ Close Button -->
+  <a class="close-btn1" (click)="goToAdminInfo()">✖</a>
+ 
+  <h2>📦 Create Purchase Order</h2>
+ 
+  <form (ngSubmit)="submitOrder()" class="po-form">
+    <!-- Supplier -->
+    <div class="form-group">
+      <label>Supplier</label>
+      <select [(ngModel)]="order.supplierId" name="supplierId" required>
+        <option value="">-- Select Supplier --</option>
+        <!-- ✅ Use supplierId instead of id -->
+        <option *ngFor="let s of suppliers" [value]="s.supplierId">
+          {{ s.name }}
+        </option>
+      </select>
+    </div>
+ 
+    <!-- Product -->
+    <div class="form-group">
+      <label>Product</label>
+      <select
+        [(ngModel)]="selectedProduct"
+        name="selectedProduct"
+        (change)="onProductSelect()"
+        required
+      >
+        <option [ngValue]="null" disabled selected>-- Select Product --</option>
+        <!-- ✅ Use productId instead of id -->
+        <option *ngFor="let p of products" [ngValue]="p">
+          {{ p.productName }} - ₹{{ p.pricePerUnit }} / {{ p.unit }}
+        </option>
+      </select>
+    </div>
+ 
+    <!-- Quantity -->
+    <div class="form-group">
+      <label>Quantity</label>
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="quantityDisplay"
+        (focus)="onQuantityFocus()"
+        (blur)="onQuantityBlur()"
+        (input)="calculateTotal()"
+        min="1"
+        required
+      />
+    </div>
+ 
+    <!-- Total -->
+    <div class="form-group">
+      <label>Total (₹)</label>
+      <input
+        type="number"
+        [(ngModel)]="order.totalAmount"
+        name="totalAmount"
+        readonly
+        placeholder="0"
+      />
+    </div>
+ 
+    <!-- Payment Mode -->
+    <div class="form-group">
+      <label>Payment Mode</label>
+      <select [(ngModel)]="order.paymentMode" name="paymentMode" required>
+        <option value="">-- Select Mode --</option>
+        <option>Cash</option>
+        <option>Card</option>
+        <option>UPI</option>
+      </select>
+    </div>
+ 
+    <!-- Payment Status -->
+    <div class="form-group">
+      <label>Payment Status</label>
+      <select [(ngModel)]="order.paymentStatus" name="paymentStatus" required>
+        <option value="">-- Select Status --</option>
+        <option>Pending</option>
+        <option>Paid</option>
+      </select>
+    </div>
+ 
+    <button type="submit" class="btn-save">💾 Save Order</button>
+    <button type="button" class="btn-reset" (click)="resetForm()">🔄 Reset</button>
+  </form>
+ 
+  <hr />
+ 
+  <h3>📋 All Purchase Orders</h3>
+ 
+  <table class="po-table" *ngIf="purchaseOrders.length > 0; else noOrders">
+    <thead>
+      <tr>
+        <th>Order ID</th>
+        <th>Supplier</th>
+        <th>Total (₹)</th>
+        <th>Payment Mode</th>
+        <th>Payment Status</th>
+        <th>Status</th>
+        <th>Order Date</th>
+        <!-- <th>Action</th> -->
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let o of purchaseOrders">
+        <td>{{ o.orderId }}</td>
+        <td>{{ o.supplierId }}</td>
+        <td>₹{{ o.totalAmount }}</td>
+        <td>{{ o.paymentMode }}</td>
+        <td>{{ o.paymentStatus }}</td>
+        <td>{{ o.orderStatus }}</td>
+        <td>{{ o.orderDate | date: 'short' }}</td>
+        <!-- <td>
+          <button class="btn-accept" (click)="updateStatus(o.orderId!, 'COMPLETED')">✔</button>
+          <button class="btn-reject" (click)="updateStatus(o.orderId!, 'CANCELLED')">✖</button>
+        </td> -->
+      </tr>
+    </tbody>
+  </table>
+ 
+  <ng-template #noOrders>
+    <p>No Purchase Orders Found</p>
+  </ng-template>
+</div>
+ 
+ 

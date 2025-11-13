@@ -1,0 +1,70 @@
+<div class="supplier-container">
+  <h2>Supplier Panel</h2>
+
+  <form [formGroup]="supplierForm" class="supplier-form" (ngSubmit)="submitForm()">
+
+    <div class="form-row">
+      <input type="text" placeholder="Name" formControlName="name" />
+      <span class="error" *ngIf="supplierForm.get('name')?.touched && supplierForm.get('name')?.invalid">
+        Required
+      </span>
+    </div>
+
+    <div class="form-row">
+      <input type="text" placeholder="Mobile" formControlName="mobile" />
+      <span class="error" *ngIf="supplierForm.get('mobile')?.touched && supplierForm.get('mobile')?.invalid">
+        {{ supplierForm.get('mobile')?.errors?.['required'] ? 'Required' : '' }}
+        {{ supplierForm.get('mobile')?.errors?.['pattern'] ? 'Invalid Phone' : '' }}
+      </span>
+    </div>
+
+    <div class="form-row">
+      <input type="email" placeholder="Email" formControlName="email" />
+      <span class="error" *ngIf="supplierForm.get('email')?.touched && supplierForm.get('email')?.invalid">
+        {{ supplierForm.get('email')?.errors?.['required'] ? 'Required' : '' }}
+        {{ supplierForm.get('email')?.errors?.['email'] ? 'Invalid Email' : '' }}
+      </span>
+    </div>
+
+    <div class="form-row">
+      <input type="text" placeholder="Address" formControlName="address" />
+    </div>
+
+    <div class="form-row">
+      <select formControlName="type">
+        <option value="Veg">Veg</option>
+        <option value="Groc">Groc</option>
+      </select>
+    </div>
+
+    <div class="form-buttons">
+      <button type="submit" [disabled]="supplierForm.invalid" class="submit-btn">
+        {{ editing ? 'Update Supplier' : 'Add Supplier' }}
+      </button>
+      <button type="button" *ngIf="editing" (click)="cancelEdit()" class="cancel-btn">Cancel</button>
+    </div>
+  </form>
+
+  <div class="supplier-table-wrapper">
+    <table class="supplier-table">
+      <thead>
+        <tr>
+          <th>Name</th><th>Mobile</th><th>Email</th><th>Address</th><th>Type</th><th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let s of suppliers">
+          <td>{{ s.name }}</td>
+          <td>{{ s.mobile }}</td>
+          <td>{{ s.email }}</td>
+          <td>{{ s.address }}</td>
+          <td>{{ s.type }}</td>
+          <td class="action-buttons">
+            <button class="edit-btn" (click)="editSupplier(s)">✏️ Edit</button>
+            <button class="delete-btn" (click)="deleteSupplier(s.id)">🗑️ Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

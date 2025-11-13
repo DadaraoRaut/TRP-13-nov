@@ -1,0 +1,46 @@
+server:
+  port: 8085
+
+spring:
+  application:
+    name: EMPLOYEE-SERVICE
+
+  datasource:
+    url: jdbc:mysql://localhost:3306/employee_db?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Kolkata
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: root
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        format_sql: true
+        jdbc:
+          time_zone: Asia/Kolkata
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+  instance:
+    prefer-ip-address: true
+
+logging:
+  level:
+    root: INFO
+    org.hibernate.SQL: DEBUG
+    org.hibernate.type.descriptor.sql.BasicBinder: TRACE
+    org.springframework.web.cors: DEBUG                # ✅ Show CORS processing
+    org.springframework.web.filter.CorsFilter: DEBUG   # ✅ Log when CORS headers applied
+    org.springframework.security.web.FilterChainProxy: DEBUG  # ✅ Show security filters
+    org.springframework.web.servlet.DispatcherServlet: DEBUG   # ✅ Log all request mappings
+
+jwt:
+  secret: mySuperSecretKey123456789012345678901234567890
+
+admin-service:
+  base-url: http://localhost:8086/admin/employees/

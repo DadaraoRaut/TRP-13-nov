@@ -1,0 +1,134 @@
+.leaves-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 40px 30px 20px 30px; /* increased top & right padding */
+  background: #fdfaf6;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative;
+}
+.leaves-container h2,
+.leaves-container h3,
+.leaves-container h1 {
+  text-align: center;
+}
+
+ 
+/* Close Button - Top Right */
+.billing-container {
+  position: relative; /* make container relative for absolute positioning */
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #007bff; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10; /* stays above all content */
+}
+
+.close-btn:hover {
+  background-color: #007bff;
+  transform: scale(1.1);
+}
+.form-section input,
+.form-section select {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 8px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 15px;
+  box-sizing: border-box;
+  display: block;
+}
+
+.form-section select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: #fff;
+  line-height: 1.5;
+}
+
+.apply-btn {
+  width: 100%;
+  padding: 10px 12px;
+  margin-top: 10px;
+  background: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: background 0.2s ease;
+}
+
+.apply-btn:hover {
+  background: #0056b3;
+}
+
+
+.tabs {
+  display: flex;
+  justify-content: space-around;
+  margin: 15px 0;
+}
+ 
+.tabs button {
+  padding: 10px 20px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background: #eee;
+  cursor: pointer;
+}
+ 
+.tabs button.active {
+  background: #007bff;
+  color: white;
+  border-color:#007bff;
+}
+ 
+.form-section input,
+.form-section select {
+  width: 100%;
+  padding: 8px 10px;
+  margin: 5px 0;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+ 
+.apply-btn {
+  width: 100%;
+  padding: 10px;
+  background:#007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+ 
+.apply-btn:hover {
+  background: #007bff;
+}
+ 
+.balance-section {
+  padding: 10px;
+  background: #f1f1f1;
+  border-radius: 6px;
+}
+ 
+ 

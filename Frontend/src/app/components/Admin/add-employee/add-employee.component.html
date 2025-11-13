@@ -1,0 +1,72 @@
+<div class="employee-container">
+ 
+ <!-- ✅ Close Button now navigates to Admin Information -->
+  <a class="close-btn1" (click)="goToAdminInfo()">✖</a>
+ 
+ 
+  <h2>Add Employee</h2>
+ 
+  <form [formGroup]="employeeForm" (ngSubmit)="onSubmit()" class="employee-form">
+    <div>
+      <label for="name">Full Name</label>
+      <input id="name" formControlName="name" type="text" placeholder="Enter employee name" />
+    </div>
+<div>
+      <label for="department">🏢 Department</label>
+      <input
+        id="department"
+        formControlName="department"
+        type="text"
+        placeholder="Enter department"
+      />
+    </div>
+ 
+    <!-- Designation -->
+    <div>
+      <label for="designation">💼 Designation</label>
+      <input
+        id="designation"
+        formControlName="designation"
+        type="text"
+        placeholder="Enter designation"
+      />
+    </div>
+ 
+    <!-- Email -->
+    <div>
+      <label for="email">✉️ Email</label>
+      <input id="email" formControlName="email" type="email" placeholder="Enter email" />
+    </div>
+ 
+    <!-- Address -->
+    <div>
+      <label for="address">🏠 Address</label>
+      <input id="address" formControlName="address" type="text" placeholder="Enter address" maxlength="100" />
+    </div>
+ 
+    <!-- Phone -->
+    <div>
+      <label for="mobileNumber">📞 Phone</label>
+     <input id="mobileNumber" formControlName="mobileNumber" type="text" placeholder="Enter mobile number" maxlength="10" />
+    </div>
+ 
+    <!-- Department -->
+   
+    <!-- Role -->
+    <div>
+      <label for="role">Role</label>
+      <select id="role" formControlName="role">
+        <option value="">Select role</option>
+        <!-- <option>Employee</option>
+        <option >Manager</option>
+        <option >Biller</option> -->
+        <option *ngFor="let r of roles" [value]="r">{{ r }}</option>
+      </select>
+    </div>
+ 
+    <!-- Submit -->
+    <button type="submit" [disabled]="employeeForm.invalid">Submit</button>
+  </form>
+</div>
+ 
+ 

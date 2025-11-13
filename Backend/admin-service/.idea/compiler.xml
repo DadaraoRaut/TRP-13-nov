@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <annotationProcessing>
+      <profile default="true" name="Default" enabled="true" />
+      <profile name="Maven default annotation processors profile" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <module name="api-gateway" />
+        <module name="User_Authentication_And_Role_Management" />
+        <module name="Employee" />
+        <module name="Eureka" />
+        <module name="admin-service" />
+        <module name="supplier" />
+      </profile>
+      <profile name="Annotation profile for Billing-Module" enabled="true">
+        <sourceOutputDir name="target/generated-sources/annotations" />
+        <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
+        <outputRelativeToContentRoot value="true" />
+        <processorPath useClasspath="false">
+          <entry name="$MAVEN_REPOSITORY$/org/projectlombok/lombok/1.18.38/lombok-1.18.38.jar" />
+        </processorPath>
+        <module name="Billing-Module" />
+      </profile>
+    </annotationProcessing>
+  </component>
+  <component name="JavacSettings">
+    <option name="ADDITIONAL_OPTIONS_OVERRIDE">
+      <module name="Billing-Module" options="-parameters" />
+      <module name="Employee" options="-parameters" />
+      <module name="Eureka" options="-parameters" />
+      <module name="User_Authentication_And_Role_Management" options="-parameters" />
+      <module name="admin-service" options="-parameters" />
+      <module name="api-gateway" options="-parameters" />
+      <module name="supplier" options="-parameters" />
+    </option>
+  </component>
+</project>

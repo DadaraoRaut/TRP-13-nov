@@ -1,0 +1,67 @@
+<div class="admin-dashboard-container">
+ 
+  <!-- Top Welcome Bar -->
+  <nav class="welcome-nav">
+    <h1>🎉 Welcome to Admin Panel</h1>
+  </nav>
+ 
+  <!-- Admin Info Header -->
+  <nav class="admin-nav">
+    <h1>👤 Admin Information</h1>
+    <p class="subtitle">Profile Overview & System Summary</p>
+  </nav>
+ 
+  <!-- Admin Info Cards -->
+  <div class="admin-info-overview">
+    <div class="info-card"><h3>🧑‍💼 Name</h3><p>{{ admin.name }}</p></div>
+    <div class="info-card"><h3>📧 Email</h3><p>{{ admin.email }}</p></div>
+    <div class="info-card"><h3>📱 Phone</h3><p>{{ admin.phone }}</p></div>
+    <div class="info-card"><h3>🏢 Department</h3><p>{{ admin.department }}</p></div>
+    <div class="info-card"><h3>🧾 Role</h3><p>{{ admin.role }}</p></div>
+    <div class="info-card"><h3>📅 Join Date</h3><p>{{ admin.joinDate }}</p></div>
+  </div>
+ 
+  <!-- 4 Module Stats -->
+  <div class="module-stats">
+    <h2>📊 Module Summary</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>👨‍💻 Employees</h3>
+        <p>Total: {{ employeeStats.total }}</p>
+        <p>Pending Payroll: {{ employeeStats.pendingPayroll }}</p>
+        <p>On Leave: {{ employeeStats.onLeave }}</p>
+      </div>
+ 
+      <div class="stat-card">
+        <h3>🚚 Suppliers</h3>
+        <p>Total: {{ supplierStats.total }}</p>
+        <p>Pending Orders: {{ supplierStats.pendingOrders }}</p>
+        <p>Active: {{ supplierStats.active }}</p>
+      </div>
+ 
+      <div class="stat-card">
+        <h3>📦 Inventory</h3>
+        <p>Total Items: {{ inventoryStats.totalItems }}</p>
+        <p>Low Stock: {{ inventoryStats.lowStock }}</p>
+        <p>Out of Stock: {{ inventoryStats.outOfStock }}</p>
+      </div>
+ 
+      <div class="stat-card">
+        <h3>🛒 Purchases</h3>
+        <p>Total Orders: {{ purchaseStats.totalOrders }}</p>
+        <p>Completed: {{ purchaseStats.completed }}</p>
+        <p>Pending: {{ purchaseStats.pending }}</p>
+      </div>
+    </div>
+  </div>
+ 
+  <!-- Activity Section -->
+  <div class="admin-activity">
+    <h3>📝 Recent Admin Actions</h3>
+    <ul>
+      <li *ngFor="let action of adminActivity">{{ action }}</li>
+    </ul>
+  </div>
+ 
+</div>
+ 

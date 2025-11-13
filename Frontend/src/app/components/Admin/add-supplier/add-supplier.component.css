@@ -1,0 +1,116 @@
+/* 🌿 Supplier Form Container */
+.supplier-container {
+  position: relative; /* ⬅️ Required to contain the absolute button */
+  max-width: 600px;
+  margin: 40px auto;
+  padding: 25px;
+  background: #fdfaf6;
+  border-radius: 16px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* 🏷️ Header */
+h2 {
+  text-align: center;
+  color: #333;
+  margin-bottom: 20px;
+}
+
+/* 🧾 Form Layout */
+form {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 15px;
+}
+
+/* 🧍‍♀️ Labels */
+label {
+  font-weight: 500;
+  color: #444;
+  margin-bottom: 4px;
+  display: block;
+}
+
+/* ✏️ Inputs & Selects */
+input, select {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Focus effect */
+input:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+/* ✅ Submit Button */
+button {
+  padding: 12px;
+  background: #007bff;
+  border: none;
+  color: #fff;
+  font-size: 15px;
+  font-weight: 500;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  margin-top: 10px;
+}
+
+button:hover {
+  background: #0056b3;
+}
+
+/* 🌸 Responsive Design */
+@media (max-width: 480px) {
+  .supplier-container {
+    padding: 20px;
+  }
+  input, select, button {
+    font-size: 13px;
+  }
+}
+
+.close-btn1 {
+  color: red;
+  font-weight: bold;
+  background: transparent;
+  border: none;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  line-height: 1;
+  position: absolute;
+  top: 16px;   /* ⬅️ Distance from top */
+  right: 20px; /* ⬅️ Distance from right */
+}
+
+button:disabled {
+  background: #9ec3f8;
+  cursor: not-allowed;
+  pointer-events: none;
+  opacity: 0.6;  /* 👈 Makes it visibly look disabled */
+}
+
+textarea {
+  padding: 10px 12px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 14px;
+  width: 100%;
+  resize: vertical;
+  min-height: 80px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+textarea:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 4px rgba(0, 123, 255, 0.3);
+  outline: none;
+}

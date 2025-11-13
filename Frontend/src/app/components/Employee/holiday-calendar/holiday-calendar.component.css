@@ -1,0 +1,63 @@
+.holiday-container {
+  max-width: 600px;
+  margin: auto;
+  padding: 20px;
+  background: #fdfaf6; /* same as Leaves */
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  position: relative; /* needed for back button */
+  text-align: center;
+}
+/* Close Button - Top Right */
+.billing-container {
+  position: relative; /* make container relative for absolute positioning */
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #007bff; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10; /* stays above all content */
+}
+
+.close-btn:hover {
+  background-color: #007bff;
+  transform: scale(1.1);
+}
+
+.holiday-container ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 20px;
+}
+
+.holiday-container li {
+  padding: 10px;
+  margin: 8px 0;
+  background: #f1f1f1; /* same as Leaves balance-section */
+  border-radius: 6px;
+  font-weight: 500;
+  text-align: left;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.date {
+  font-weight: bold;
+  color:  #06080b; /* same as Leaves headers */
+}

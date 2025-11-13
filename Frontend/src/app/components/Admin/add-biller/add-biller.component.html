@@ -1,0 +1,45 @@
+<div class="biller-container">
+  <button class="close-btn1" (click)="onClose()">×</button>
+  <h2>Add Biller</h2>
+
+  <form [formGroup]="billerForm" (ngSubmit)="onSubmit()" class="biller-form">
+    <div>
+      <label>Employee</label>
+      <select formControlName="employeeId">
+        <option value="">-- Select Employee --</option>
+        <option *ngFor="let emp of employees" [value]="emp.id">
+          {{ emp.name }}
+        </option>
+      </select>
+      <small *ngIf="billerForm.get('employeeId')?.touched && billerForm.get('employeeId')?.invalid" class="error-text">
+        Employee selection is required.
+      </small>
+    </div>
+
+    <div>
+      <label>Biller Name</label>
+      <input type="text" formControlName="billerName" placeholder="Enter biller name" />
+      <small *ngIf="billerForm.get('billerName')?.touched && billerForm.get('billerName')?.invalid" class="error-text">
+        Name is required.
+      </small>
+    </div>
+
+    <div>
+      <label>Biller Email</label>
+      <input type="email" formControlName="billerEmail" placeholder="Enter email" />
+      <small *ngIf="billerForm.get('billerEmail')?.touched && billerForm.get('billerEmail')?.invalid" class="error-text">
+        Enter a valid email.
+      </small>
+    </div>
+
+    <div>
+      <label>Biller Contact</label>
+      <input type="text" formControlName="billerContact" placeholder="10-digit number" />
+      <small *ngIf="billerForm.get('billerContact')?.touched && billerForm.get('billerContact')?.invalid" class="error-text">
+        Enter a valid 10-digit number.
+      </small>
+    </div>
+
+    <button type="submit" [disabled]="billerForm.invalid">Save Biller</button>
+  </form>
+</div>

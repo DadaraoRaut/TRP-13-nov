@@ -1,0 +1,62 @@
+<div class="attendance-container">
+  <!-- ❌ Back Button at top-right -->
+  <button class="close-btn" (click)="goBack()">✖</button>
+
+  <h2>Attendance</h2>
+  
+
+  <!-- Buttons for Sign In and Sign Out -->
+  <div class="form-group buttons">
+    <button (click)="signIn()" [disabled]="loading">
+      {{ loading ? 'Signing In...' : 'Sign In' }}
+    </button>
+    <button (click)="signOut()" [disabled]="loading">
+      {{ loading ? 'Signing Out...' : 'Sign Out' }}
+    </button>
+  </div>
+  
+
+  <!-- Message display -->
+  <p class="message">{{ message }}</p>
+
+  <!-- Attendance Table -->
+  <div class="table-section" *ngIf="attendanceRecords && attendanceRecords.length > 0">
+    <h3>Attendance Records</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Employee ID</th>
+          <th>Date</th>
+          <th>Sign In</th>
+          <th>Sign Out</th>
+          <th>Status</th>
+          <th>Total Work Hrs</th>
+          <th>Break Hrs</th>
+          <th>Actual Work Hrs</th>
+          <th>Shortfall Hrs</th>
+          <th>Excess Hrs</th>
+          <th>Late In</th>
+          <th>Early Out</th>
+          <th>Shift</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let record of attendanceRecords">
+          <td>{{ record.employeeId }}</td>
+          <td>{{ record.date | date: 'dd MMM yyyy' }}</td>
+          <td>{{ record.signInTime | date: 'hh:mm a' }}</td>
+          <td>{{ record.signOutTime | date: 'hh:mm a' }}</td>
+          <td>{{ record.status }}</td>
+          <td>{{ record.totalWorkHrs }}</td>
+          <td>{{ record.breakHrs }}</td>
+          <td>{{ record.actualWorkHrs }}</td>
+          <td>{{ record.shortfallHrs }}</td>
+          <td>{{ record.excessHrs }}</td>
+          <td>{{ record.lateIn }}</td>
+          <td>{{ record.earlyOut }}</td>
+          <td>{{ record.shift }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>

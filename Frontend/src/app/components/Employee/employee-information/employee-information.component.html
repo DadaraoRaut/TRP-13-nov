@@ -1,0 +1,58 @@
+<div class="employee-dashboard-container">
+  
+  <!-- Top Welcome Bar -->
+  <nav class="welcome-nav">
+    <h1>🎉 Welcome to Employee Panel</h1>
+  </nav>
+
+  <!-- Employee Info Header -->
+  <nav class="employee-nav">
+    <h1>👩‍💼 Employee Information</h1>
+    <p class="subtitle">Profile Overview & Quick Summary</p>
+  </nav>
+
+  <!-- Employee Info Cards -->
+  <div class="employee-info-overview">
+    <div class="info-card"><h3>🧑‍💼 Name</h3><p>{{ employee.name }}</p></div>
+    <div class="info-card"><h3>📧 Email</h3><p>{{ employee.email }}</p></div>
+    <div class="info-card"><h3>📱 Phone</h3><p>{{ employee.phone }}</p></div>
+    <div class="info-card"><h3>🏢 Department</h3><p>{{ employee.department }}</p></div>
+    <div class="info-card"><h3>💼 Designation</h3><p>{{ employee.designation }}</p></div>
+    <div class="info-card"><h3>📅 Join Date</h3><p>{{ employee.joinDate }}</p></div>
+  </div>
+
+  <!-- 4 Module Stats -->
+  <div class="module-stats">
+    <h2>📊 Work Summary</h2>
+    <div class="stats-grid">
+      <div class="stat-card">
+        <h3>🕒 Attendance</h3>
+        <p>{{ moduleStats.attendance }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>🎉 Holidays</h3>
+        <p>{{ moduleStats.holiday }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>💰 Salary</h3>
+        <p>{{ moduleStats.salary }}</p>
+      </div>
+
+      <div class="stat-card">
+        <h3>📝 Leaves</h3>
+        <p>{{ moduleStats.leaves }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Section -->
+  <div class="employee-activity">
+    <h3>🗂️ Recent Activities</h3>
+    <ul>
+      <li *ngFor="let action of employeeActivity">{{ action }}</li>
+    </ul>
+  </div>
+
+</div>

@@ -1,0 +1,96 @@
+<div class="leaves-container">
+  <!-- ❌ Close-style Back button (Billing style) -->
+  <button class="close-btn" (click)="goBack()">✖</button>
+
+  
+ 
+
+  <!-- Tabs -->
+  <div class="tabs">
+    <button [class.active]="activeTab==='apply'" (click)="setTab('apply')">Leave Apply</button>
+    <button [class.active]="activeTab==='cancel'" (click)="setTab('cancel')">Cancel Leave</button>
+    <button [class.active]="activeTab==='pending'" (click)="setTab('pending')">Pending</button>
+    <button [class.active]="activeTab==='history'" (click)="setTab('history')">History</button>
+    <button [class.active]="activeTab==='balance'" (click)="setTab('balance')">Leave Balance</button>
+  </div>
+ 
+  <!-- ✅ Leave Apply -->
+  <div *ngIf="activeTab==='apply'" class="form-section">
+    <select [(ngModel)]="leaveType">
+      <option value="">Select Leave Type</option>
+      <option value="Casual">Casual</option>
+      <option value="Sick">Sick</option>
+      <option value="Earned">Earned</option>
+      <option value="CompOff">CompOff</option>
+    </select>
+    <input [(ngModel)]="fromDate" type="date" placeholder="From Date" />
+    <input [(ngModel)]="toDate" type="date" placeholder="To Date" />
+    <input [(ngModel)]="reason" placeholder="Reason" />
+    <input [(ngModel)]="ccTo" placeholder="To Manager (ccTo)" />
+    <input [(ngModel)]="contactDetails" placeholder="Contact Details" maxlength="10" />
+    <button class="apply-btn" (click)="applyLeave()">Apply Leave</button>
+  </div>
+ 
+  <!-- ✅ Cancel Leave -->
+   <div *ngIf="activeTab==='cancel'" class="form-section">
+    <div *ngIf="leavesList.length > 0">
+      <h3>Active Leaves (Cancelable)</h3>
+      <div *ngFor="let leave of leavesList" class="balance-section">
+        <p><b>Type:</b> {{leave.leaveType}}</p>
+        <p><b>From:</b> {{leave.fromDate}} - <b>To:</b> {{leave.toDate}}</p>
+        <p><b>Status:</b> {{leave.status}}</p>
+ 
+        <button class="apply-btn" *ngIf="leave.status === 'Pending'"
+                (click)="cancelLeave(leave.id)">Cancel Leave</button>
+      </div>
+    </div>
+    <p *ngIf="leavesList.length===0 && !loading">No active leaves to cancel.</p>
+  </div>
+ 
+ 
+  <!-- ✅ Pending Leaves -->
+  <div *ngIf="activeTab==='pending'" class="form-section">
+    <div *ngIf="pendingLeaves.length > 0">
+      <h3>Pending Leaves</h3>
+      <div *ngFor="let leave of pendingLeaves" class="balance-section">
+        <p><b>Type:</b> {{leave.leaveType}}</p>
+        <p><b>Dates:</b> {{leave.fromDate}} - {{leave.toDate}}</p>
+        <p><b>Status:</b> {{leave.status}}</p>
+      </div>
+    </div>
+    <p *ngIf="pendingLeaves.length===0 && !loading">No pending leaves.</p>
+  </div>
+ 
+  <!-- ✅ Leave History -->
+  <div *ngIf="activeTab==='history'" class="form-section">
+    <div *ngIf="historyLeaves.length > 0">
+      <h3>Leave History</h3>
+      <div *ngFor="let leave of historyLeaves" class="balance-section">
+        <p><b>Type:</b> {{leave.leaveType}}</p>
+        <p><b>Dates:</b> {{leave.fromDate}} - {{leave.toDate}}</p>
+        <p><b>Status:</b> {{leave.status}}</p>
+      </div>
+    </div>
+    <p *ngIf="historyLeaves.length===0 && !loading">No history available.</p>
+  </div>
+ 
+  <!-- ✅ Leave Balance -->
+  <div *ngIf="activeTab==='balance'" class="balance-section">
+    <h3>Leave Balance</h3>
+    <div *ngIf="leaveBalances">
+      <p>Casual: {{leaveBalances.casual}}</p>
+      <p>Sick: {{leaveBalances.sick}}</p>
+      <p>Earned: {{leaveBalances.earned}}</p>
+      <p>CompOff: {{leaveBalances.compOff}}</p>
+    </div>
+    <div *ngIf="!leaveBalances && !loading">
+      <p>No data found.</p>
+    </div>
+  </div>
+ 
+  <!-- ✅ Messages -->
+  <p *ngIf="message" style="margin-top:10px;color:#d9534f;">{{message}}</p>
+  <p *ngIf="loading" style="color:#555;">Loading...</p>
+</div>
+ 
+ 

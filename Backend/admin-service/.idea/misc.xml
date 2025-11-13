@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ExternalStorageConfigurationManager" enabled="true" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/APIGateway/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/AuthService/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/Billing-Module/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/Eureka/pom.xml" />
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/supplier/pom.xml" />
+        <option value="$PROJECT_DIR$/../../Employee 4 (1)/Employee/pom.xml" />
+        <option value="$PROJECT_DIR$/../../Billing-Module 2/Billing-Module/pom.xml" />
+        <option value="D:/ERP Project/updated backend/APIGateway/pom.xml" />
+        <option value="D:/ERP Project/updated backend/supplier/pom.xml" />
+        <option value="D:/ERP Project/updated backend/Eureka/pom.xml" />
+        <option value="D:/ERP Project/updated backend/AuthService/pom.xml" />
+      </list>
+    </option>
+    <option name="ignoredFiles">
+      <set>
+        <option value="$PROJECT_DIR$/../../../../../ERP Project/Backend intellj/Billing-Module/pom.xml" />
+      </set>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_21" default="true" project-jdk-name="21" project-jdk-type="JavaSDK" />
+</project>

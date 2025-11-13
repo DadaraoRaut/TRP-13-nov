@@ -1,0 +1,60 @@
+<div class="purchase-container">
+  <h2>Create Purchase Order</h2>
+
+  <form [formGroup]="purchaseForm" class="purchase-form">
+    <select formControlName="supplierId">
+      <option value="">Select Supplier</option>
+      <option *ngFor="let s of suppliers" [value]="s.id">{{ s.name }} ({{s.type}})</option>
+    </select>
+
+    <select formControlName="productId">
+      <option value="">Select Product</option>
+      <option *ngFor="let p of filteredProducts" [value]="p.id">{{ p.name }} ({{p.category}})</option>
+    </select>
+
+    <input type="number" placeholder="Quantity" formControlName="purchaseQuantity" min="1" />
+    <input type="text" placeholder="Reference" formControlName="reference" />
+
+    <button *ngIf="purchaseForm.valid" type="button" (click)="addItem()">
+      Add Item
+    </button>
+  </form>
+
+  <div *ngIf="orderItems.length>0" class="purchase-table-wrapper">
+    <h3>Order Items</h3>
+    <table class="purchase-table">
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Category</th>
+          <th>Unit</th>
+          <th>Quantity</th>
+          <th>Price</th>
+          <th>Total</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of orderItems; let i = index">
+          <td>{{ item.product.name }}</td>
+          <td>{{ item.product.category }}</td>
+          <td>{{ item.product.unit }}</td>
+          <td>{{ item.purchaseQuantity }}</td>
+          <td>{{ item.product.price }}</td>
+          <td>{{ item.totalAmount }}</td>
+          <td>
+            <button class="delete-btn" type="button" (click)="removeItem(i)">X</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p><strong>Total Amount: {{ getTotalAmount() }}</strong></p>
+
+ <div class="purchase-action-buttons" *ngIf="orderItems.length>0">
+  <button class="submit-btn" (click)="submitOrder()">Submit Order</button>
+  <button class="pdf-btn" (click)="generatePDF()">Generate PDF</button>
+</div>
+
+  </div>
+</div>

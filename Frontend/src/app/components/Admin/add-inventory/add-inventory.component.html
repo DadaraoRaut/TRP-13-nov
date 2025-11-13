@@ -1,0 +1,58 @@
+<div class="inventory-container">
+ 
+ <!-- ✅ Close Button now navigates to Admin Information -->
+  <a class="close-btn1" (click)="goToAdminInfo()">✖</a>
+ 
+ 
+  <h2>Add Inventory</h2>
+
+  <form [formGroup]="inventoryForm" (ngSubmit)="onSubmit()" class="inventory-form">
+    <!-- Item ID -->
+    <!-- <div>
+      <label for="itemId">Item ID</label>
+      <input id="itemId" formControlName="itemId" type="text" placeholder="Enter item ID (optional)" />
+    </div> -->
+
+    <!-- Item Name -->
+    <div>
+      <label for="productName">Item Name</label>
+      <input id="productName" formControlName="productName" type="text" placeholder="Enter item name" required />
+    </div>
+
+    <!-- Quantity -->
+    <div>
+      <label for="quantity">Quantity</label>
+      <input id="quantity" formControlName="quantity" type="number" placeholder="Enter quantity" required />
+    </div>
+
+    <div>
+      <label for="unit">Unit</label>
+        <select id="unit" formControlName="unit">
+        <option value="">Select Unit</option>
+        <option value="kg">KG</option>
+              <option value="liter">Liter</option>
+        <option value="gram">Gram</option>
+
+      </select>    </div>
+    <!-- Price -->
+    <div>
+      <label for="pricePerUnit">Price (per unit)</label>
+      <input id="pricePerUnit" formControlName="pricePerUnit" type="number" placeholder="Enter price" required />
+    </div>
+
+    <!-- Category -->
+    <div>
+      <label for="category">Category</label>
+      <select id="category" formControlName="category">
+        <option value="">Select category</option>
+        <option value="Vegetable">Vegetable</option>
+        <option value="Grocery">Grocery</option>
+        <option value="Dairy">Dairy</option>
+        <option value="Other">Other</option>
+      </select>
+    </div>
+
+    <!-- Submit Button -->
+    <button type="submit" >Save Inventory</button>
+  </form>
+</div>

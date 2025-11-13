@@ -1,0 +1,87 @@
+.order-list-container {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 20px;
+  font-family: 'Segoe UI', sans-serif;
+  background: #f9f9f9;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+}
+ 
+.order-list-container h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+ 
+.order-table-wrapper {
+  overflow-x: auto;
+}
+ 
+.order-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 10px;
+  overflow: hidden;
+}
+ 
+.order-table th, .order-table td {
+  padding: 12px 15px;
+  text-align: left;
+}
+ 
+.order-table th {
+  background-color: #4caf50;
+  color: white;
+}
+ 
+.order-table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+ 
+.order-table tr:hover {
+  background-color: #e6f7ff;
+}
+ 
+.order-table ul {
+  padding-left: 15px;
+  margin: 0;
+}
+ 
+.order-table button {
+  padding: 5px 10px;
+  margin-right: 5px;
+  border-radius: 5px;
+  font-size: 13px;
+  border: none;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+ 
+.order-table .pdf-btn {
+  background-color: #2196f3;
+  color: white;
+}
+ 
+.order-table .pdf-btn:hover {
+  background-color: #1976d2;
+}
+ 
+.order-table .delete-btn {
+  background-color: #f44336;
+  color: white;
+}
+ 
+.order-table .delete-btn:hover {
+  background-color: #d32f2f;
+}
+ 
+.no-orders {
+  text-align: center;
+  color: #555;
+  font-style: italic;
+  margin-top: 20px;
+}
+ 
+
+ 

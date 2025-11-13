@@ -1,0 +1,97 @@
+<div class="supplier-container">
+
+  <!-- ❌ Back Button at top-right -->
+  <button class="close-btn" (click)="goBack()">✖</button>
+ 
+  
+  <h2>🧺 Supplier Item Management</h2>
+
+  <form [formGroup]="itemForm" (ngSubmit)="onSubmit()" class="supplier-form">
+    <div class="form-row">
+      <label>Product Name:</label>
+      <input formControlName="productName" placeholder="Enter product name" />
+      <div class="error" *ngIf="itemForm.get('productName')?.touched && itemForm.get('productName')?.invalid">
+        Product Name is required.
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Product Type:</label>
+      <select formControlName="productType">
+        <option value="" disabled>Select Type</option>
+        <option *ngFor="let type of productTypes" [value]="type">{{ type }}</option>
+      </select>
+      <div class="error" *ngIf="itemForm.get('productType')?.touched && itemForm.get('productType')?.invalid">
+        Product Type is required.
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Unit Type:</label>
+      <select formControlName="unitType">
+        <option value="" disabled>Select Unit</option>
+        <option *ngFor="let unit of filteredUnits" [value]="unit">{{ unit }}</option>
+      </select>
+      <div class="error" *ngIf="itemForm.get('unitType')?.touched && itemForm.get('unitType')?.errors">
+        {{ itemForm.get('unitType')?.errors?.['invalidUnit'] || 'Unit Type is required.' }}
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Quantity:</label>
+      <input type="number" formControlName="quantity" placeholder="Enter quantity" />
+      <div class="error" *ngIf="itemForm.get('quantity')?.touched && itemForm.get('quantity')?.invalid">
+        Enter a valid quantity (>0).
+      </div>
+    </div>
+
+    <div class="form-row">
+      <label>Price per Unit:</label>
+      <input type="number" formControlName="pricePerUnit" placeholder="Enter price per unit" />
+      <div class="error" *ngIf="itemForm.get('pricePerUnit')?.touched && itemForm.get('pricePerUnit')?.invalid">
+        Enter a valid price (>0).
+      </div>
+    </div>
+
+    <button type="submit" [disabled]="itemForm.invalid">
+      {{ editMode ? '✏️ Update Item' : '➕ Add Item' }}
+    </button>
+  </form>
+
+  <hr />
+
+  <h3>📦 My Items</h3>
+
+  <table class="supplier-table" *ngIf="items.length > 0; else noData">
+    <thead>
+      <tr>
+         <th>Product ID</th>
+        <th>Product</th>
+        <th>Type</th>
+        <th>Unit</th>
+        <th>Quantity</th>
+        <th>Price/Unit</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of items">
+         <td>{{ item.productId }}</td>
+        <td>{{ item.productName }}</td>
+        <td>{{ item.productType }}</td>
+        <td>{{ item.unitType }}</td>
+        <td>{{ item.quantity }}</td>
+        <td>{{ item.pricePerUnit }}</td>
+        <td>
+          <button class="edit-btn" (click)="editItem(item)">✏️ Edit</button>
+          <button class="delete-btn" (click)="deleteItem(item.id!)">🗑️ Delete</button>
+
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noData>
+    <p class="no-data">No items found. Please add your first product.</p>
+  </ng-template>
+</div>

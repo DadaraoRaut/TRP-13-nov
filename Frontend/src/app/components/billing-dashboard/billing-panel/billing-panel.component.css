@@ -1,0 +1,500 @@
+.billing-container {  
+  max-width: 950px;
+  margin: 40px auto;
+  padding: 25px 30px;
+  background: linear-gradient(135deg, #fffdf8, #f8f6f2);
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
+  font-family: 'Poppins', sans-serif;
+  transition: all 0.3s ease;
+}
+
+.billing-container:hover {
+  box-shadow: 0 8px 22px rgba(0,0,0,0.18);
+}
+/* ================= Product Form ================= */
+/* .product-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 18px 20px;
+  margin-bottom: 30px;
+  padding: 15px 10px;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+.product-form label {
+  display: block;
+  font-weight: 500;
+  color: #2c3e50;
+  margin-bottom: 4px;
+  font-size: 0.95rem;
+}
+
+.product-form input,
+.product-form select {
+  padding: 10px 12px;
+  border: 1.5px solid #888;
+  border-radius: 10px;
+  width: 100%;
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  background-color: #fff;
+  box-sizing: border-box;
+}
+
+.product-form input:disabled,
+.product-form select:disabled {
+  background-color: #f5f5f5;
+  color: #555;
+}
+
+.product-form input:focus,
+.product-form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+  outline: none;
+} */
+
+/* ================= Product Form ================= */
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* wider columns */
+  column-gap: 40px;   /* increased horizontal space between columns */
+  row-gap: 14px;      /* compact vertical gap */
+  margin-bottom: 35px;
+  padding: 18px 14px;
+  background: #fffdf8;
+  border-radius: 16px;
+  box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+}
+
+/* Inline layout for each label + input */
+.product-form label {
+  display: inline-block;
+  width: 38%;
+  font-weight: 500;
+  color: #2c3e50;
+  font-size: 0.95rem;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Inputs & Selects inline beside labels */
+.product-form input,
+.product-form select {
+  display: inline-block;
+  width: 58%;
+  padding: 8px 10px;
+  border: 1.5px solid #888;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  vertical-align: middle;
+  box-sizing: border-box;
+}
+
+/* Reduce top margin for the very first field (Product Name) */
+.product-form label:first-of-type,
+.product-form select:first-of-type {
+  margin-top: -6px; /* tighter spacing above product name dropdown */
+}
+
+/* Focus and disabled states */
+.product-form input:focus,
+.product-form select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.3);
+  outline: none;
+}
+
+.product-form input:disabled,
+.product-form select:disabled {
+  background-color: #f5f5f5;
+  color: #555;
+}
+
+/* Buttons styling */
+.product-form button {
+  grid-column: span 2;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+  margin-top: 10px;
+}
+
+/* Mobile-friendly adjustments */
+@media (max-width: 650px) {
+  .product-form {
+    grid-template-columns: 1fr;
+    column-gap: 0;
+  }
+
+  .product-form label,
+  .product-form input,
+  .product-form select {
+    display: block;
+    width: 100%;
+  }
+
+  .product-form label:first-of-type,
+  .product-form select:first-of-type {
+    margin-top: 0;
+  }
+}
+
+/* ================= Product Form Buttons ================= */
+.product-form button {
+  grid-column: span 2;
+  padding: 10px 18px;
+  border: none;
+  border-radius: 10px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: 0.95rem;
+}
+
+.product-form button:hover {
+  transform: scale(1.03);
+}
+
+/* Specific buttons */
+.product-form button:nth-child(n+1) {
+  background: linear-gradient(90deg, #28a745, #1f8a36); /* Add Product */
+  color: #fff;
+}
+
+.product-form button:nth-child(n+2) {
+  background: linear-gradient(90deg, #007bff, #0056b3); /* Update Product */
+  color: #fff;
+  
+}
+
+.product-form button:nth-child(n+3) {
+  background: linear-gradient(90deg, #dc3545, #a71d2a); /* Cancel */
+  color: #fff;
+}
+
+/* Responsive adjustments for mobile */
+@media (max-width: 650px) {
+  .product-form {
+    grid-template-columns: 1fr;
+  }
+
+  .product-form button {
+    grid-column: span 1;
+
+  }
+}
+
+/* Headings */
+h2,h3,h5 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+/* Product Form */
+.product-form {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 15px;
+  margin-bottom: 25px;
+}
+
+input, select {
+  padding: 10px;
+  border: 1.8px solid #888;
+  border-radius: 10px;
+  background-color: #fff;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+input:focus, select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0, 123, 255, 0.4);
+  outline: none;
+}
+
+/* Buttons */
+button {
+  grid-column: span 2;
+  padding: 10px 14px;
+  border: none;
+  border-radius: 10px;
+  background: linear-gradient(90deg, #007bff, #0056b3);
+  color: #fff;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+button:hover {
+  transform: scale(1.03);
+  background: linear-gradient(90deg, #0056b3, #004094);
+}
+
+
+
+/* Tables - Bill Summary & Stock Overview */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 20px 0;
+  border: 2px solid #333;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+th, td {
+  border: 1px solid #333;
+  padding: 10px;
+  text-align: center;
+  color: #222;
+  background-color: #fff;
+}
+
+th {
+  background-color: #007bff;
+  color: #fff;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+}
+
+tr:nth-child(even) td {
+  background-color: #f9fafc;
+}
+
+tr:hover td {
+  background-color: #eef5ff;
+}
+
+/* Section Titles */
+.section-title {
+  margin-top: 20px;
+  text-align: center;
+  font-size: 1.1em;
+  color: #007bff;
+  font-weight: 600;
+}
+/*  */
+
+/* Stock Overview */
+.stock-table {
+  border: 2px solid #000;
+  border-radius: 10px;
+  width: 100%;
+  margin-top: 15px;
+}
+
+.stock-table th {
+  background: #6c63ff;
+  color: #fff;
+  font-weight: 600;
+}
+
+.stock-table td {
+  border: 1px solid #444;
+}
+
+tr:nth-child(even) {
+  background-color: #fdfdfd;
+}
+
+/* Grand Total Highlight */
+.total-section {
+  text-align: right;
+  font-size: 1.2em;
+  margin-top: 10px;
+  font-weight: 600;
+  color: #000;
+}
+
+.total-section span {
+  background: #ffeb99;
+  padding: 4px 10px;
+  border-radius: 6px;
+}
+/* Payment Buttons - Brighter Gradients */
+.pay-btn {
+  background: linear-gradient(90deg, #4cd964, #28a745); /* bright green */
+  color: #fff;
+}
+
+.print-btn {
+  background: linear-gradient(90deg, #a0a0a0, #6c757d); /* lighter gray */
+  color: #fff;
+}
+
+.invoice-btn {
+  background: #4CAF50;
+  color: white;
+  padding: 8px 16px;
+  border-radius: 8px;
+  margin-left: 10px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+.invoice-btn:hover {
+  background: #45a049;
+}
+
+/* Hover effects */
+.pay-btn:hover {
+  background: linear-gradient(90deg, #28a745, #1e7f34);
+}
+
+.print-btn:hover {
+  background: linear-gradient(90deg, #8c8c8c, #545b62);
+}
+
+.invoice-btn:hover {
+  background: linear-gradient(90deg, #3498db, #2e86c1);
+}
+/* ===== Action Buttons (Edit / Delete) ===== */
+table td button {
+  padding: 6px 10px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+  margin: 0 4px; /* spacing between buttons */
+}
+
+table td button:first-child {
+  background-color: #007bff; /* Edit - blue */
+  color: white;
+}
+
+table td button:last-child {
+  background-color: #dc3545; /* Delete - red */
+  color: white;
+}
+
+table td button:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+/* ===== Center Payment Method Radio Buttons ===== */
+/* ================= Payment Method Section ================= */
+h4 {
+  text-align: center;
+  color: #2c3e50;
+  margin-top: 30px;
+  font-weight: 600;
+}
+
+.payment-method {
+  display: flex;
+  justify-content: center;
+  flex-direction: row; /* makes them horizontal */
+  align-items: center;
+  gap: 25px;
+  margin-top: 10px;
+  flex-wrap: wrap;
+  font-weight: 500;
+  color: #2c3e50;
+  background: #fffdf8;
+  padding: 12px 0;
+  border-radius: 12px;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.08);
+}
+
+.payment-method label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+    font-weight: 500;
+  font-size: 1rem;
+  cursor: pointer;
+  padding: 6px 10px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+    cursor: pointer;
+}
+
+.payment-method label:hover {
+  background-color: #eef5ff;
+  transform: scale(1.05);
+}
+
+/* Payment Details (UPI / Card Inputs) */
+.payment-details { 
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 0.1fr)); /* flexible columns */
+  column-gap: 4px;   /* very small space between Card Number & Expiry Date */
+  row-gap: 16px;      /* compact vertical gap */
+  padding: 14px 16px; /* slightly tighter padding */
+  border-radius: 14px;
+  background: #ffffff;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+  margin-bottom: 16px; /* reduced vertical spacing below section */
+}
+
+.payment-details label {
+  font-weight: 500;
+  color: #2c3e50;
+}
+
+.payment-details input {
+  padding: 10px 12px;
+  border: 1.6px solid #888;
+  border-radius: 8px;
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.payment-details input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 6px rgba(0,123,255,0.3);
+  outline: none;
+}
+
+/* Close Button - Top Right */
+.billing-container {
+  position: relative; /* make container relative for absolute positioning */
+}
+
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #dc3545; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.close-btn:hover {
+  background-color: #a71d2a;
+  transform: scale(1.1);
+}
+.pay-btn {
+  background-color: #28a745; /* green */
+  color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  border: none;
+  cursor: pointer;
+  margin-right: 10px;
+}

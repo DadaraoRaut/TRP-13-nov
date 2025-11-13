@@ -1,0 +1,86 @@
+<div class="invoice-container">
+  <button class="close-btn" (click)="goBackToDashboard()">✖</button>
+
+  <h2>📄 All Invoices</h2>
+
+  <table class="invoice-table" *ngIf="invoices.length > 0; else noInvoices">
+    <thead>
+      <tr>
+        <th>Bill No</th>
+        <th>Date & Time</th>
+        <th>Customer</th>
+        <th>Total Amount (₹)</th>
+        <th>Payment Method</th>
+        <th>Status</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let invoice of invoices">
+        <td>{{ invoice.billNumber }}</td>
+        <td>{{ invoice.dateTime | date:'short' }}</td>
+        <td>{{ invoice.billedBy }}</td>
+        <td>₹{{ invoice.totalAmount | number:'1.2-2' }}</td>
+        <td>{{ invoice.paymentMethod }}</td>
+        <td>{{ invoice.paymentStatus }}</td>
+        <td>
+          <button (click)="viewInvoice(invoice)">View</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <ng-template #noInvoices>
+    <p>No invoices found.</p>
+  </ng-template>
+
+  <!-- Selected Invoice Details -->
+  <div class="invoice-details" *ngIf="selectedInvoice" id="invoice-print">
+    <h2>🧾 Invoice #{{ selectedInvoice.billNumber }}</h2>
+    <p><strong>Date & Time:</strong> {{ selectedInvoice.dateTime | date:'short' }}</p>
+    <p><strong>Billed By:</strong> {{ selectedInvoice.billedBy }}</p>
+    <p><strong>Payment Method:</strong> {{ selectedInvoice.paymentMethod }}</p>
+    <p *ngIf="selectedInvoice.paymentDetail">
+      <strong>Payment Detail:</strong> {{ selectedInvoice.paymentDetail }}
+    </p>
+    <p><strong>Status:</strong> {{ selectedInvoice.paymentStatus }}</p>
+
+    <table class="product-table" *ngIf="selectedInvoice.items.length > 0">
+      <thead>
+        <tr>
+          <th>Item Name</th>
+          <th>Qty</th>
+          <th>Price/Unit (₹)</th>
+          <th>GST (%)</th>
+          <th>GST Amount (₹)</th>
+          <th>Total Price (₹)</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let item of selectedInvoice.items">
+          <td>{{ item.itemName }}</td>
+          <td>{{ item.quantity }}</td>
+          <td>₹{{ item.pricePerUnit | number:'1.2-2' }}</td>
+          <td>{{ item.taxPercent }}%</td>
+          <td>₹{{ item.taxAmount | number:'1.2-2' }}</td>
+          <td>₹{{ item.totalPrice | number:'1.2-2' }}</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="total-section">
+      <p><strong>Subtotal:</strong> ₹{{ selectedInvoice.subtotal | number:'1.2-2' }}</p>
+      <p><strong>Total GST:</strong> ₹{{ getTotalGST(selectedInvoice) | number:'1.2-2' }}</p>
+      <h3><strong>Grand Total:</strong> ₹{{ selectedInvoice.totalAmount | number:'1.2-2' }}</h3>
+    </div>
+
+    <div class="buttons">
+      <button (click)="printInvoice()">🖨️ Print</button>
+      <button (click)="closeInvoice()">❌ Close</button>
+    </div> </div>
+</div>
+    <div class="download-buttons">
+      <button (click)="downloadBillPdf(billSummary.billId)" class="btn-pdf">📄 Download PDF</button>
+      <button (click)="downloadBillExcel(billSummary.billId)" class="btn-excel">📊 Download Excel</button>
+    </div>
+ 

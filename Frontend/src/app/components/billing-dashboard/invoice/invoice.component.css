@@ -1,0 +1,200 @@
+/* Container for all invoices */
+.invoice-container {
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #fefefe;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Main heading */
+.invoice-container h2 {
+  text-align: center;
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Invoice table styles */
+.invoice-table,
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+.invoice-table th,
+.invoice-table td,
+.product-table th,
+.product-table td {
+  border: 1px solid #ddd;
+  padding: 10px;
+  text-align: center;
+  font-size: 14px;
+}
+
+.invoice-table th,
+.product-table th {
+  background-color: #f5f5f5;
+  font-weight: 600;
+}
+
+.invoice-table tr:nth-child(even),
+.product-table tr:nth-child(even) {
+  background-color: #fcfcfc;
+}
+
+.invoice-table tr:hover,
+.product-table tr:hover {
+  background-color: #f0f7ff;
+}
+
+/* No invoices message */
+ng-template p,
+.invoice-container p {
+  text-align: center;
+  font-size: 16px;
+  color: #777;
+  margin-top: 20px;
+}
+
+/* Selected invoice details */
+.invoice-details {
+  margin-top: 30px;
+  padding: 20px;
+  background-color: #fff9f0;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+/* Invoice headings */
+.invoice-details h2 {
+  text-align: center;
+  color: #1a73e8;
+  margin-bottom: 15px;
+}
+
+/* Invoice text */
+.invoice-details p {
+  font-size: 15px;
+  margin: 5px 0;
+}
+
+/* Total section */
+.total-section {
+  margin-top: 20px;
+  font-size: 16px;
+  font-weight: 600;
+  text-align: right;
+}
+
+.total-section h3 {
+  font-size: 18px;
+  color: #1a73e8;
+  margin-top: 10px;
+}
+
+/* Buttons styling */
+.buttons {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.buttons button {
+  background-color: #1a73e8;
+  color: #fff;
+  border: none;
+  padding: 10px 22px;
+  margin: 0 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: all 0.3s ease;
+}
+
+.buttons button:hover {
+  background-color: #155ab6;
+  transform: scale(1.05);
+}
+
+/* Print button separate color */
+.buttons button:first-child {
+  background-color: #28a745;
+}
+
+.buttons button:first-child:hover {
+  background-color: #218838;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .invoice-table,
+  .product-table,
+  .invoice-details {
+    font-size: 13px;
+  }
+
+  .buttons button {
+    padding: 8px 16px;
+    font-size: 12px;
+  }
+}
+.invoice-container {
+  position: relative; /* IMPORTANT: makes absolute positioning relative to this container */
+  max-width: 1000px;
+  margin: 40px auto;
+  padding: 25px;
+  background-color: #fefefe;
+  border-radius: 16px;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+/* Close button */
+.close-btn {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background-color: #007bff; /* red */
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  z-index: 10; /* stays above all content */
+}
+
+.close-btn:hover {
+  background-color: #007bff;
+  transform: scale(1.1);
+}
+/* Hide print and close buttons only when printing */
+@media print {
+  .buttons {
+    display: none !important;
+  }
+
+  .close-btn {
+    display: none !important;
+  }
+
+  .download-buttons {
+    display: none !important;
+  }
+}
+@media print {
+  .buttons, .close-btn, .download-buttons {
+    display: none !important;
+  }
+}
+

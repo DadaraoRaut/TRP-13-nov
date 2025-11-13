@@ -1,0 +1,56 @@
+<div class="billing-dashboard-container">
+    
+  
+  <!-- Top Welcome Bar -->
+  <nav class="welcome-nav">
+    <h1>🎉 Welcome to Billing Panel</h1>
+  </nav>
+  
+  <!-- Top Header -->
+  <nav class="welcome-nav">
+    <h1>💳 Billing Information</h1>
+    <p class="subtitle">Overview of daily sales & POS activity</p>
+  </nav>
+
+  <!-- Billing Info Overview -->
+  <div class="billing-info-overview">
+    <div class="info-card"><h3>👩‍💼 Biller Name</h3><p>{{ billingInfo.billerName }}</p></div>
+    <div class="info-card"><h3>🆔 Biller ID</h3><p>{{ billingInfo.billerId }}</p></div>
+    <div class="info-card"><h3>🏢 Department</h3><p>{{ billingInfo.department }}</p></div>
+    <div class="info-card"><h3>💻 Terminal ID</h3><p>{{ billingInfo.terminalId }}</p></div>
+    <div class="info-card"><h3>🧾 Bills Today</h3><p>{{ billingInfo.totalBillsToday }}</p></div>
+    <div class="info-card"><h3>💰 Total Revenue</h3><p>{{ billingInfo.totalRevenue }}</p></div>
+  </div>
+
+  <!-- Summary Section -->
+  <div class="summary-section">
+    <h2>📊 Billing Summary</h2>
+    <div class="summary-grid">
+      <div class="summary-card">
+        <h3>💵 Today’s Sales</h3>
+        <p>{{ summaryStats.todaySales }}</p>
+      </div>
+      <div class="summary-card">
+        <h3>📅 Monthly Sales</h3>
+        <p>{{ summaryStats.monthlySales }}</p>
+      </div>
+      <div class="summary-card">
+        <h3>🏆 Top Product</h3>
+        <p>{{ summaryStats.topProduct }}</p>
+      </div>
+      <div class="summary-card">
+        <h3>🎁 Discounts</h3>
+        <p>{{ summaryStats.discountGiven }}</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Activity Section -->
+  <div class="billing-activity">
+    <h3>🗂️ Recent Billing Activities</h3>
+    <ul>
+      <li *ngFor="let action of recentActivity">{{ action }}</li>
+    </ul>
+  </div>
+
+</div>

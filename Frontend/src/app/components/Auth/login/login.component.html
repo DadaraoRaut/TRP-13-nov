@@ -1,0 +1,29 @@
+<div class="login-container">
+  <h2>Login</h2>
+  <h3>Welcome to Supermarket ERP</h3>
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <div>
+      <label>username</label>
+      <input type="username" formControlName="username" placeholder="Enter username" />
+    </div>
+
+    <div>
+      <label>Password</label>
+      <input type="password" formControlName="password" placeholder="Enter password" />
+    </div>
+
+    <div>
+      <label>Role</label>
+      <select formControlName="role">
+        <option value="" >Select role</option>
+        <option value="ADMIN">Admin</option>
+        <option value="EMPLOYEE">Employee</option>
+        <option value="SUPPLIER">Supplier</option>
+        <option value="BILLER">Biller</option>
+      </select>
+    </div>
+
+    <button type="submit" >Login</button>
+  </form>
+</div>
+<router-outlet></router-outlet>

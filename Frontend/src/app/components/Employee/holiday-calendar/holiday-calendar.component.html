@@ -1,0 +1,12 @@
+<div class="holiday-container">
+ <!-- ❌ Close-style Back button (Billing style) -->
+  <button class="close-btn" (click)="goBack()">✖</button>
+
+  <h2>Upcoming Holidays</h2>
+
+  <ul>
+    <li *ngFor="let holiday of holidays">
+      <span class="date">{{ holiday.date }}</span> - <span>{{ holiday.name }}</span>
+    </li>
+  </ul>
+</div>

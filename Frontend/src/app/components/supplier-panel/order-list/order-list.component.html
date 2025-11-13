@@ -1,0 +1,80 @@
+<div class="order-list-container">
+  <h2>Purchase Orders</h2>
+
+  <!-- Loading / Error -->
+  <p *ngIf="isLoading">Loading orders...</p>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+
+  <!-- Orders Table -->
+  <div *ngIf="!isLoading && orders.length > 0" class="order-table-wrapper">
+    <table class="order-table">
+      <thead>
+        <tr>
+          <th>Order ID</th>
+          <th>Supplier ID</th>
+          <th>Order Date</th>
+          <th>Products</th>
+          <th>Total Amount</th>
+          <th>Payment Mode</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr *ngFor="let order of orders">
+          <!-- Order ID -->
+          <td>{{ order.orderId || '-' }}</td>
+
+          <!-- Supplier ID -->
+          <td>{{ order.supplierId || '-' }}</td>
+
+          <!-- Order Date -->
+          <td>{{ order.orderDate ? (order.orderDate | date:'short') : '-' }}</td>
+
+          <!-- Products -->
+          <td>
+            <ng-container *ngIf="order.products && order.products.length > 0; else noProducts">
+              <ul>
+                <li *ngFor="let p of order.products">
+                  {{ p.productName || 'Unnamed Product' }} (Qty: {{ p.quantity || 0 }})
+                </li>
+              </ul>
+            </ng-container>
+            <ng-template #noProducts>
+              <span>-</span>
+            </ng-template>
+          </td>
+
+          <!-- Total Amount -->
+          <td>{{ order.totalAmount || 0 | number:'1.2-2' }}</td>
+
+          <!-- Payment Mode -->
+          <td>{{ order.paymentMode || '-' }}</td>
+
+          <!-- Status -->
+          <td>{{ order.orderStatus || '-' }}</td>
+
+          <!-- Actions -->
+          <td class="action-buttons">
+            <button class="pdf-btn" (click)="generatePDF(order)">PDF</button>
+            <button 
+              class="accept-btn" 
+              [disabled]="order.orderStatus !== 'PENDING'" 
+              (click)="respondToOrder(order, 'accept')">
+              Accept
+            </button>
+            <button 
+              class="reject-btn" 
+              [disabled]="order.orderStatus !== 'PENDING'" 
+              (click)="respondToOrder(order, 'reject')">
+              Reject
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p *ngIf="!isLoading && orders.length === 0" class="no-orders">No purchase orders found.</p>
+</div>
