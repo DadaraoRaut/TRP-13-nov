@@ -1,0 +1,159 @@
+version: "3.8"
+
+services:
+  # Database
+  mysql-db:
+    image: mysql:8.0
+    container_name: erp-mysql-db
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: erp_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - erp-network
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-u", "root", "-proot"]
+      timeout: 20s
+      retries: 10
+      interval: 10s
+
+  # Eureka Service Registry
+  eureka-server:
+    image: dadarao/eureka:latest
+    container_name: erp-eureka-server
+    ports:
+      - "8761:8761"
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # API Gateway
+  api-gateway:
+    image: dadarao/apigateway:latest
+    container_name: erp-api-gateway
+    depends_on:
+      - eureka-server
+    ports:
+      - "8080:8080"
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Auth Service
+  auth-service:
+    image: dadarao/authservice:latest
+    container_name: erp-auth-service
+    ports:
+      - "8081:8081"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/role_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Admin Service
+  admin-service:
+    image: dadarao/admin-service:latest
+    container_name: erp-admin-service
+    ports:
+      - "8086:8086"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/admin_service_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Billing Module
+  billing-service:
+    image: dadarao/billing-module:latest
+    container_name: erp-billing-service
+    ports:
+      - "8084:8084"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/billing_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Employee Service
+  employee-service:
+    image: dadarao/employee:latest
+    container_name: erp-employee-service
+    ports:
+      - "8085:8085"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/employee_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Supplier Service
+  supplier-service:
+    image: dadarao/supplier:latest
+    container_name: erp-supplier-service
+    ports:
+      - "8083:8083"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      eureka-server:
+        condition: service_started
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql-db:3306/supplier_db?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: root
+      SPRING_DATASOURCE_PASSWORD: root
+    networks:
+      - erp-network
+    restart: on-failure
+
+  # Frontend
+  frontend:
+    image: dadarao/frontend:latest
+    container_name: erp-frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - api-gateway
+    networks:
+      - erp-network
+    restart: on-failure
+
+networks:
+  erp-network:
+    driver: bridge
+
+volumes:
+  mysql-data:
+    driver: local
